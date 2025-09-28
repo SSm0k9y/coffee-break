@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Оформлення замовлення{% endblock %}
+{% block content %}
+<h2 class="mb-4">Оформлення замовлення</h2>
+
+<form action="{{ url_for('checkout') }}" method="post" class="checkout-form">
+    <div class="mb-3">
+        <label for="city" class="form-label">Місто:</label>
+        <input type="text" name="city" id="city" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="street" class="form-label">Вулиця:</label>
+        <input type="text" name="street" id="street" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="house_number" class="form-label">Номер дому:</label>
+        <input type="text" name="house_number" id="house_number" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Телефон:</label>
+        <input type="text" name="phone" id="phone" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Замовити</button>
+</form>
+{% endblock %}

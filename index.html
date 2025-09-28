@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Головна{% endblock %}
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Ласкаво просимо до нашої кав'ярні!</h1>
+    <p>Смакуйте найкращу каву прямо зараз.</p>
+    <a href="{{ url_for('menu') }}" class="btn btn-primary btn-lg">Перейти в меню</a>
+</div>
+{% endblock %}

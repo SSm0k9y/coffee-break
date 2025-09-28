@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Замовлення{% endblock %}
+{% block content %}
+<h2>Історія замовлень</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Місто</th>
+            <th>Вулиця</th>
+            <th>Номер дому</th>
+            <th>Телефон</th>
+            <th>Статус</th>
+            <th>Товари</th>
+            <th>Дії</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.city }}</td>
+            <td>{{ order.street }}</td>
+            <td>{{ order.house_number }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.status }}</td>
+            <td>
+                <ul>
+                    {% for item in order.items %}
+                    <li>{{ item.product.name }} × {{ item.quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                {% if order.status != "Підтверджено" %}
+                <form action="{{ url_for('confirm_order', order_id=order.id) }}" method="post" style="display:inline-block;">
+                    <button type="submit" class="btn btn-success btn-sm mb-1">Підтвердити</button>
+                </form>
+                {% endif %}
+                <form action="{{ url_for('delete_order', order_id=order.id) }}" method="post" style="display:inline-block;">
+                    <button type="submit" class="btn btn-danger btn-sm">Видалити</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
